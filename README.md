@@ -1,1 +1,3 @@
-This is a template of creating a react demo
+#  Email / SMS Authentication Demo
+
+deployment: https://demo-email-sms-auth.vercel.app/
