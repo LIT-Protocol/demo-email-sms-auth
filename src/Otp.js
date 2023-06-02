@@ -17,6 +17,10 @@ export function Otp() {
         redirectUri: window.location.href.replace(/\/+$/, ''),
         litRelayConfig: {
             relayApiKey: '67e55044-10b1-426f-9247-bb680e5fe0c8_relayer',
+        },
+        litOtpConfig: {
+            baseUrl: "https://auth-api.litgateway.com",
+            port: "443"
         }
     });
  
