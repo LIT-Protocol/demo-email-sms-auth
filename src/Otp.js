@@ -239,7 +239,7 @@ export function Otp() {
                     <span>Created your pkp account</span>
                 }
                 {action === 'login' &&
-                    <span> Showing a pkp for your account</span>
+                    <span> Showing a pkp + AA address for your account</span>
                 }
                 <br/>
                 <br/>
@@ -256,6 +256,19 @@ export function Otp() {
                         <Card.Content>
                             <br/>
                             <div> transaction: {pkpInfo} </div>
+                        </Card.Content>
+                    }
+                </Card>
+                <br/>
+                <br/>
+                <br/>
+                <Card title="AA information">
+                    {Array.isArray(pkpInfo) && 
+                        <Card.Content>
+                            <br/>
+                            <ul>
+                                {pkpList}
+                            </ul>
                         </Card.Content>
                     }
                 </Card>
