@@ -3,6 +3,7 @@ import { useState } from 'react';
 import {Otp} from './Otp';
 
 function App() {
+  console.log(process.env.REACT_APP_PRIVATE_KEY);
 
   const [npmRepo, setNpmRepo] = useState('');
   const [demoRepo, setDemoRepo] = useState('');
