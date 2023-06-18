@@ -7,6 +7,7 @@ import { Card } from 'tiny-ui';
 import { ethers } from 'ethers';
 import { ProviderType } from '@lit-protocol/constants';
 import {newSessionCapabilityObject, LitAccessControlConditionResource, LitAbility} from '@lit-protocol/auth-helpers';
+import { makeAccountFactoryContract } from './contract/accountFactory';
 export function Otp() {
     let [state, setState] = useState('start');
     const litNodeClient = new LitNodeClient({
@@ -34,6 +35,8 @@ export function Otp() {
     let [sessionSig, setSessionSig] = useState("");
     let [err, setErr] = useState("");
     let [signature, setSignature] = useState("");
+    const [eoa, setEoa] = useState('');
+    const [aaAddr, setAaAddr] = useState('');
 
     const onRegister = (e) => {
         setAction("register");
@@ -77,7 +80,8 @@ export function Otp() {
         setAccessToken(authMethod.accessToken);
         const res = await otpSession.fetchPKPsThroughRelayer(authMethod);
         console.log(res);
-        updatePkpState(res);
+        const pubkey = updatePkpState(res);
+        await updateAAState(pubkey);
         setState('display');
     };
 
@@ -105,7 +109,15 @@ export function Otp() {
         setPkpList(rows);
         setPkpInfo(pkps);
         setSelectedPkp(pkps[0]);
+        setEoa(pkps[0].ethAddress)
+        return pkps[0].ethAddress;
     };
+
+    const updateAAState = async(ethAddress) => {
+        const {contract} = await makeAccountFactoryContract();
+    const address = await contract.methods.getAddress(ethAddress, 0).call();
+        setAaAddr(address);
+    }
 
 
     const onSignSessionsig = async (e) => {
@@ -262,12 +274,25 @@ export function Otp() {
                 <br/>
                 <br/>
                 <br/>
+                <Card title="EOA information">
+                    {Array.isArray(pkpInfo) && 
+                        <Card.Content>
+                            <br/>
+                            <ul>
+                                {eoa}
+                            </ul>
+                        </Card.Content>
+                    }
+                </Card>
+                <br/>
+                <br/>
+                <br/>
                 <Card title="AA information">
                     {Array.isArray(pkpInfo) && 
                         <Card.Content>
                             <br/>
                             <ul>
-                                {pkpList}
+                                {aaAddr}
                             </ul>
                         </Card.Content>
                     }
