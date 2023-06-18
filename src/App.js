@@ -1,13 +1,8 @@
 import './App.css';
 import { useState } from 'react';
-import LitLogo from './LitLogo';
 import {Otp} from './Otp';
 
 function App() {
-
-  // ----- autogen:app-name:start  -----
-const [appName, setAppName] = useState('SMS / Email Authentication and Registration');
-// ----- autogen:app-name:end  -----
 
   const [npmRepo, setNpmRepo] = useState('');
   const [demoRepo, setDemoRepo] = useState('');
@@ -22,9 +17,8 @@ const [appName, setAppName] = useState('SMS / Email Authentication and Registrat
   return (
     <div className="App">
       <header className="App-header">
-        <LitLogo />
         <h4>
-          React Demo for: {appName}<br/>
+          Lit SMS / Email Authentication and Registration + make Account Abstraction Wallet<br/>
         </h4>
       </header>
       <div className="Otp">
