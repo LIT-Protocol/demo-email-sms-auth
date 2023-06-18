@@ -4,8 +4,7 @@ import {Otp} from './Otp';
 import { makeAccountFactoryContract } from './contract/accountFactory';
 
 function App() {
-  console.log(process.env.REACT_APP_PRIVATE_KEY);
-  // console.log(makeAccountFactoryContract());
+  console.log(makeAccountFactoryContract());
 
   const [npmRepo, setNpmRepo] = useState('');
   const [demoRepo, setDemoRepo] = useState('');

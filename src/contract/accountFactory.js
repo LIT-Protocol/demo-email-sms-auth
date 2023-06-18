@@ -1,6 +1,6 @@
 import HDWalletProvider from "@truffle/hdwallet-provider";
 import Web3 from "web3";
-// import abi from "../abi/ITwilightAccountFactory.json";
+import abi from "./simpleAccountFactory.json";
 
 export const makeAccountFactoryContract = () => {
   const contractAddress = "0xdea5dda469e0c8d4193545ca6aaaaed24f1cef3b"; // Account Factory Address I have already deployed
@@ -14,6 +14,6 @@ export const makeAccountFactoryContract = () => {
 
   const web3 = new Web3(hdWalletProvider);
   console.log(web3);
-  //   const contract = new web3.eth.Contract(abi as AbiItem[], contractAddress);
-  // return {contract};
+    const contract = new web3.eth.Contract(abi, contractAddress);
+  return {contract};
 };
